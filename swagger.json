@@ -1,0 +1,115 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0", 
+        "title": "My Guitar Project CRUD",
+        "description": "My User Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Guitars",
+            "description": "API for users in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/guitars": {
+            "get": {
+                "tags": ["Guitars"],
+                "summary": "Get all Guitars in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Guitar"
+                        }
+                    }
+                }
+            }
+        },
+        "/guitar": {
+            "post": {
+                "tags":  ["Guitars"],
+                "description": "Create new Guitar in system",
+                "parameters": [
+                    {
+                        "name": "restaurant",
+                        "in": "body",
+                        "description": "Restaurant that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Guitar"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New restaurant is created",
+                        "schema": {
+                            "$ref": "#/definitions/Guitar"
+                        }
+                    }
+                }
+            }
+        },
+        "/guitar/{id}": {
+            "delete": {
+                "tags": ["Guitars"],
+                "description": "Deletes the guitar",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of guitar that we want to delete",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema" : {
+                            "$ref": "#/definitions/Guitar"
+                        }
+
+                    }
+                }
+
+            }
+        }
+    },
+    "definitions": {
+        "Guitar": {
+            "required": ["id","name"],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
+
+
+
+
